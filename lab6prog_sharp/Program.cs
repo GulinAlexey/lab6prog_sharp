@@ -267,6 +267,18 @@ namespace lab6prog_sharp
     {
         static void Main(string[] args) //основная программа (главная)
         {
+            Console.WriteLine("Start program for working with workers and reserves.\n");
+		    Worker w0 = new Worker(12345, "No Name", "No Prof", 0, 0, 0); //начальные данные работника для инициализации заповедника
+		    Reserve res1= new Reserve("No Name", 0, 0, 100, w0);
+		    res1.Read();
+		    res1.Display();
+		    res1.ZarplChange();
+		    res1.Display();
+		    res1.BudgChange();
+		    res1.Display();
+
+            Console.WriteLine("\nEnd of program. Press any key to exit...");
+            Console.ReadKey(); //ожидание нажатия любой клавиши для выхода.
 
         }
     }

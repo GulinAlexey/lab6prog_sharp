@@ -1,0 +1,4 @@
+C:\Users\Алексей\Documents\GitHub\lab6prog_sharp\lab6prog_sharp\bin\Debug\lab6prog_sharp.exe
+C:\Users\Алексей\Documents\GitHub\lab6prog_sharp\lab6prog_sharp\bin\Debug\lab6prog_sharp.pdb
+C:\Users\Алексей\Documents\GitHub\lab6prog_sharp\lab6prog_sharp\obj\x86\Debug\lab6prog_sharp.exe
+C:\Users\Алексей\Documents\GitHub\lab6prog_sharp\lab6prog_sharp\obj\x86\Debug\lab6prog_sharp.pdb
