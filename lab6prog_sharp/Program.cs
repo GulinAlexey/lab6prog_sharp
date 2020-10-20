@@ -265,8 +265,9 @@ namespace lab6prog_sharp
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) //основная программа (главная)
         {
+
         }
     }
 }
