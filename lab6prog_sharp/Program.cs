@@ -230,7 +230,37 @@ namespace lab6prog_sharp
 		
 	    }
 
+        public void Add(Reserve r1, Reserve r2) //сложение
+        {
+            Reserve rsum;
+            rsum = r1; //переписать первую структуру в суммарную структуру
+            rsum.budget += r2.budget; //прибавить к имеющимся числовым переменным суммарной структуры значения из второй структуры
+            rsum.expens += r2.expens;
+            rsum.kolvow += r2.kolvow;
+            this.Init(rsum.title, rsum.budget, rsum.expens, rsum.kolvow, rsum.workers); //вернуть итоговый объект как результат
+        }
 
+        public void ZarplChange() //изменение зарплаты всех (прикладное)
+	    {
+		    Console.WriteLine("\nChanging zarplata of all workers\n");
+		    Console.WriteLine("Input changes of zarplata: ");
+		    int izm; //переменная с прибавкой или убавкой
+            izm = Int32.Parse(Console.ReadLine());
+		    int n = this.kolvow; //получить кол-во работников
+		    for(int i=0; i<n; i++)
+		    {
+		    	this.workers[i].set_z(workers[i].get_z()+izm); //добавить изменение к текущему
+		    }
+	    }
+
+        public void BudgChange() //изменение бюджета (прикладное)
+	    {
+		    Console.WriteLine("\nChanging budget of reserve\n");
+		    Console.WriteLine("Input changes of budget: ");
+		    int izm; //переменная с прибавкой или убавкой
+            izm = Int32.Parse(Console.ReadLine());
+		    this.budget+=izm; //добавить изменение к текущему
+	    }
     }
 
     class Program
