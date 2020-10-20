@@ -90,6 +90,23 @@ namespace lab6prog_sharp
         {
             return dolzh;
         }
+
+        public void Read() //ввод
+	    {
+		    Console.WriteLine("\nInput info about worker.\n");
+		    Console.WriteLine("Input num of workbook: ");
+		    num_tr=Int32.Parse(Console.ReadLine());
+		    Console.WriteLine("Input name and surname: ");
+		    name_surname=Console.ReadLine();
+		    Console.WriteLine("Input dolzhnost: ");
+		    dolzh=Console.ReadLine();
+		    Console.WriteLine("Input work hours: ");
+		    hours=Int32.Parse(Console.ReadLine());
+		    Console.WriteLine("Input zarplata: ");
+		    zarpl=Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Input progools: ");
+		    progools=Int32.Parse(Console.ReadLine());
+	    }
     }
 
     class Program
