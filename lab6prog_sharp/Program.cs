@@ -267,9 +267,12 @@ namespace lab6prog_sharp
     {
         static void Main(string[] args) //основная программа (главная)
         {
+            const int LEN = 100;
             Console.WriteLine("Start program for working with workers and reserves.\n");
-		    Worker w0 = new Worker(12345, "No Name", "No Prof", 0, 0, 0); //начальные данные работника для инициализации заповедника
-		    Reserve res1= new Reserve("No Name", 0, 0, 100, w0);
+            Worker[] w0 = new Worker[LEN]; //начальные данные работника для инициализации заповедника
+            for (int i = 0; i < LEN; i++)
+                w0[i] = new Worker(12345, "No Name", "No Prof", 0, 0, 0);
+            Reserve res1= new Reserve("No Name", 0, 0, 100, w0);
 		    res1.Read();
 		    res1.Display();
 		    res1.ZarplChange();
