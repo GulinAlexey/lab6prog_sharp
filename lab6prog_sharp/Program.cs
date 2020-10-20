@@ -146,6 +146,17 @@ namespace lab6prog_sharp
 	    }
     }
 
+    class Reserve //заповедник
+    {
+        private string title;  //название заповедника
+	    private int budget=0;          //бюджет заповедника
+	    private int expens=0;          //расходы
+	    private int kolvow=0;         //кол-во работников в заповеднике
+	    private Worker[] workers = new Worker[100]; //работники заповедника
+
+
+    }
+
     class Program
     {
         static void Main(string[] args)
