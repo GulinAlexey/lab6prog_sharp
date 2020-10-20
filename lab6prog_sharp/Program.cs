@@ -212,6 +212,25 @@ namespace lab6prog_sharp
                 Console.WriteLine("Progools: {0}\n", workers[i].get_prog());
 		    }
 	    }
+
+        public void Read() //ввод
+	    {
+		    Console.WriteLine("\nInput info about reserve.\n");
+		    Console.WriteLine("Input title: ");
+		    this.title=Console.ReadLine();
+		    Console.WriteLine("Input budget: ");
+		    this.budget=Int32.Parse(Console.ReadLine());
+		    Console.WriteLine("Input expenses: ");
+		    this.expens=Int32.Parse(Console.ReadLine());
+		    Console.WriteLine("Input count of workers: ");
+            this.kolvow = Int32.Parse(Console.ReadLine());
+		    int n_k = this.kolvow;
+		    for(int i=0; i<n_k; i++)
+			    this.workers[i].Read();
+		
+	    }
+
+
     }
 
     class Program
