@@ -119,6 +119,31 @@ namespace lab6prog_sharp
             Console.WriteLine("Progools: {0}\n", progools);
 
 	    }
+
+        public void Add(Worker wr1, Worker wr2) //сложение
+        {
+            Worker wrsum = new Worker(12345, "No Name", "No Prof", 0, 0, 0);
+            wrsum = wr1;
+            wrsum.hours += wr2.hours; //прибавить к имеющимся числовым переменным суммарного объекта значения из второго объекта (кроме номера трудовой)
+            wrsum.zarpl += wr2.zarpl;
+            wrsum.progools += wr2.progools;
+            this.Init(wrsum.num_tr, wrsum.name_surname, wrsum.dolzh, wrsum.hours, wrsum.zarpl, wrsum.progools); //вернуть итоговый объект как результат
+        }
+
+        //обнуление прогулов (прикладное)
+        public void Obnul()
+        {
+            this.progools = 0; //обнулить прогулы
+        }
+
+        public void Izm_zarpl() //изменение зарплаты (прикладное)
+	    {
+		    Console.WriteLine("\nChanging zarplata of worker\n");
+		    Console.WriteLine("Input changes of zarplata: ");
+		    int izm; //переменная с прибавкой или убавкой зарплаты
+            izm = Int32.Parse(Console.ReadLine());
+		    this.zarpl+=izm; //добавить изменение к текущей зарплате
+	    }
     }
 
     class Program
