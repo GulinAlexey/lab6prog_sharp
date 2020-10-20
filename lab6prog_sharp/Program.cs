@@ -107,6 +107,18 @@ namespace lab6prog_sharp
             Console.WriteLine("Input progools: ");
 		    progools=Int32.Parse(Console.ReadLine());
 	    }
+
+        public void Display() //вывод
+	    {
+		    Console.WriteLine("\nOutput info about worker.\n");
+            Console.WriteLine("Num of workbook: {0}\n", num_tr);
+            Console.WriteLine("Name and surname: {0}\n", name_surname);
+            Console.WriteLine("Dolzhnost: {0}\n", dolzh);
+            Console.WriteLine("Work hours: {0}\n", hours);
+            Console.WriteLine("Zarplata: {0}\n", zarpl);
+            Console.WriteLine("Progools: {0}\n", progools);
+
+	    }
     }
 
     class Program
