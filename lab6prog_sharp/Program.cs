@@ -11,6 +11,85 @@ namespace lab6prog_sharp
         private int hours; //кол-во рабочих часов
         private int zarpl; //зарплата в месяц в рублях
         private int progools; //кол-во прогулов (в днях)
+
+        //конструктор с параметрами
+        public Worker(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
+        {
+            this.num_tr = num_trud;
+            this.name_surname = name_sur;
+            this.dolzh = dolzhno;
+            this.hours = hourss;
+            this.zarpl = zarplat;
+            this.progools = progoo;
+        }
+
+        //инициализация
+        public void Init(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
+        {
+            this.num_tr = num_trud;
+            this.name_surname = name_sur;
+            this.dolzh = dolzhno;
+            this.hours = hourss;
+            this.zarpl = zarplat;
+            this.progools = progoo;
+        }
+
+        //Получение и установление соответствующих полей
+        public void set_num(int num)
+        {
+            this.num_tr = num;
+        }
+        public int get_num()
+        {
+            return num_tr;
+        }
+
+        public void set_h(int h)
+        {
+            this.hours = h;
+        }
+        public int get_h()
+        {
+            return hours;
+        }
+
+        public void set_z(int z)
+        {
+            this.zarpl = z;
+        }
+        public int get_z()
+        {
+            return zarpl;
+        }
+
+        public void set_prog(int prog)
+        {
+            this.progools = prog;
+        }
+        public int get_prog()
+        {
+            return progools;
+        }
+
+        public void set_name(string nam)
+        {
+            this.name_surname = nam;
+        }
+
+        public string get_name()
+        {
+            return name_surname;
+        }
+
+        public void set_dol(string dol)
+        {
+            this.dolzh = dol;
+        }
+
+        public string get_dol()
+        {
+            return dolzh;
+        }
     }
 
     class Program
