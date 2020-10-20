@@ -149,12 +149,69 @@ namespace lab6prog_sharp
     class Reserve //заповедник
     {
         private string title;  //название заповедника
-	    private int budget=0;          //бюджет заповедника
-	    private int expens=0;          //расходы
-	    private int kolvow=0;         //кол-во работников в заповеднике
+	    private int budget;          //бюджет заповедника
+	    private int expens;          //расходы
+	    private int kolvow;         //кол-во работников в заповеднике
 	    private Worker[] workers = new Worker[100]; //работники заповедника
 
+        //конструктор с параметрами
+        public Reserve(string titl, int budg, int exp, int kolv, Worker[] works)
+        {
+            this.title = titl;
+            this.budget = budg;
+            this.expens = exp;
+            this.kolvow = kolv;
+            for (int i = 0; i < kolv; i++)
+            {
+                this.workers[i] = works[i];
+            }
+        }
 
+        //конструктор с параметрами (вторая перегрузка)
+        public Reserve(string titl, int budg, int exp, int kolv, Worker works)
+        {
+            this.title = titl;
+            this.budget = budg;
+            this.expens = exp;
+            this.kolvow = kolv;
+            for (int i = 0; i < kolv; i++)
+            {
+                this.workers[i] = works;
+            }
+        }
+
+        //инициализация
+        public void Init(string titl, int budg, int exp, int kolv, Worker[] works)
+        {
+            this.title = titl;
+            this.budget = budg;
+            this.expens = exp;
+            this.kolvow = kolv;
+            for (int i = 0; i < kolv; i++)
+            {
+                this.workers[i] = works[i];
+            }
+        }
+
+        public void Display() //вывод
+	    {
+		    Console.WriteLine("\nOutput info about reserve.\n");
+		    Console.WriteLine("Title: {0}\n", title);
+		    Console.WriteLine("Budget: {0}\n", budget);
+		    Console.WriteLine("Expenses: {0}\n", expens);
+		    Console.WriteLine("Count of workers: {0}\n", kolvow);
+		    int n = this.kolvow; //получить кол-во работников
+		    for(int i=0; i<n; i++)
+		    {
+                Console.WriteLine("\nWorker {0}\n", i + 1);
+                Console.WriteLine("Num of workbook: {0}\n", workers[i].get_num());
+                Console.WriteLine("Name and surname: {0}\n", workers[i].get_name());
+                Console.WriteLine("Dolzhnost: {0}\n", workers[i].get_dol());
+                Console.WriteLine("Work hours: {0}\n", workers[i].get_h());
+                Console.WriteLine("Zarplata: {0}\n", workers[i].get_z());
+                Console.WriteLine("Progools: {0}\n", workers[i].get_prog());
+		    }
+	    }
     }
 
     class Program
