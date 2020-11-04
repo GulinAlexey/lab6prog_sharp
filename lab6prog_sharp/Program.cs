@@ -1,4 +1,4 @@
-﻿//Гулин А. Н., ПИ-92. Лаб. 6 "Первая программа на С#"
+﻿//Гулин А. Н., ПИ-92. Лаб. 7 "Модификации"
 using System;
 
 namespace lab6prog_sharp
@@ -22,6 +22,44 @@ namespace lab6prog_sharp
             this.zarpl = zarplat;
             this.progools = progoo;
         }
+
+        //свойства полей
+        public int Num_tr
+        {
+            get { return num_tr; }
+            set { num_tr = value; }
+        }
+
+        public string Name_surname
+        {
+            get { return name_surname; }
+            set { name_surname = value; }
+        }
+
+        public string Dolzh
+        {
+            get { return dolzh; }
+            set { dolzh = value; }
+        }
+
+        public int Hours
+        {
+            get { return hours; }
+            set { hours = value; }
+        }
+
+        public int Zarpl
+        {
+            get { return zarpl; }
+            set { zarpl = value; }
+        }
+
+        public int Progools
+        {
+            get { return progools; }
+            set { progools = value; }
+        }
+
 
         //инициализация
         public void Init(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
@@ -180,6 +218,31 @@ namespace lab6prog_sharp
             }
         }
 
+        //свойства полей
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public int Budget
+        {
+            get { return budget; }
+            set { budget = value; }
+        }
+
+        public int Expens
+        {
+            get { return expens; }
+            set { expens = value; }
+        }
+
+        public int Kolvow
+        {
+            get { return kolvow; }
+            set { kolvow = value; }
+        }
+
         //инициализация
         public void Init(string titl, int budg, int exp, int kolv, Worker[] works)
         {
@@ -204,12 +267,12 @@ namespace lab6prog_sharp
 		    for(int i=0; i<n; i++)
 		    {
                 Console.WriteLine("\nWorker {0}\n", i + 1);
-                Console.WriteLine("Num of workbook: {0}\n", workers[i].get_num());
-                Console.WriteLine("Name and surname: {0}\n", workers[i].get_name());
-                Console.WriteLine("Dolzhnost: {0}\n", workers[i].get_dol());
-                Console.WriteLine("Work hours: {0}\n", workers[i].get_h());
-                Console.WriteLine("Zarplata: {0}\n", workers[i].get_z());
-                Console.WriteLine("Progools: {0}\n", workers[i].get_prog());
+                Console.WriteLine("Num of workbook: {0}\n", workers[i].Num_tr);
+                Console.WriteLine("Name and surname: {0}\n", workers[i].Name_surname);
+                Console.WriteLine("Dolzhnost: {0}\n", workers[i].Dolzh);
+                Console.WriteLine("Work hours: {0}\n", workers[i].Hours);
+                Console.WriteLine("Zarplata: {0}\n", workers[i].Zarpl);
+                Console.WriteLine("Progools: {0}\n", workers[i].Progools);
 		    }
 	    }
 
@@ -230,6 +293,11 @@ namespace lab6prog_sharp
 		
 	    }
 
+        public Worker get_worker(int i) //получить работника с выбранным номером
+        {
+            return workers[i];
+        }
+
         public void Add(Reserve r1, Reserve r2) //сложение
         {
             Reserve rsum;
@@ -249,7 +317,7 @@ namespace lab6prog_sharp
 		    int n = this.kolvow; //получить кол-во работников
 		    for(int i=0; i<n; i++)
 		    {
-		    	this.workers[i].set_z(workers[i].get_z()+izm); //добавить изменение к текущему
+		    	this.workers[i].set_z(workers[i].Zarpl+izm); //добавить изменение к текущему
 		    }
 	    }
 
@@ -260,6 +328,48 @@ namespace lab6prog_sharp
 		    int izm; //переменная с прибавкой или убавкой
             izm = Int32.Parse(Console.ReadLine());
 		    this.budget+=izm; //добавить изменение к текущему
+	    }
+
+        public void blag(out double blaga) //количество отчислений на благотворительность (через out)
+        {
+            blaga = budget * 0.1;
+        }
+
+        public void sohr(ref double sohr) //сохранённая (неиспользованная) часть бюждета (через ref)
+        {
+            sohr = budget - expens;
+        }
+
+        public static Reserve operator+(Reserve r1, int a) //увеличение бюджета через +
+        {
+            Reserve rsum;
+            rsum = r1;
+            rsum.Budget = r1.Budget + a;
+            return rsum;
+        }
+
+        public static Reserve operator++(Reserve r1) //увеличение расходов через ++
+        {
+            ++r1.Expens;
+            return r1;
+        }
+
+        public void found_name_surname(String names_surnames) //поиск по имени и фамилии (обработка строк)
+	    {
+		    int rez=0;
+		    for(int i=0; i<kolvow; i++)
+		    {
+                rez=String.Compare(names_surnames, workers[i].Name_surname);
+		    	if(rez==0) //сравнить строки на идентичность
+		    	{
+		    		Console.WriteLine("\nWorker found.\n");
+		    		break;
+		    	}
+		    }
+		    if(rez!=0)
+		    {
+                Console.WriteLine("\nWorker didn't found.\n");
+		    }
 	    }
     }
 
@@ -272,13 +382,34 @@ namespace lab6prog_sharp
             Worker[] w0 = new Worker[LEN]; //начальные данные работника для инициализации заповедника
             for (int i = 0; i < LEN; i++)
                 w0[i] = new Worker(12345, "No Name", "No Prof", 0, 0, 0);
-            Reserve res1= new Reserve("No Name", 0, 0, 100, w0);
+            Reserve res1= new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
 		    res1.Read();
 		    res1.Display();
 		    res1.ZarplChange();
 		    res1.Display();
 		    res1.BudgChange();
 		    res1.Display();
+
+            double bla; //отчисления на благотворительность
+            res1.blag(out bla);
+            Console.WriteLine("Reserve's charity is {0}\n", bla);
+
+            double soh=0; //неиспользованная часть бюджета
+            res1.sohr(ref soh);
+            Console.WriteLine("Reserve's unused part of the budget is {0}\n", soh);
+
+            Console.WriteLine("Reserve after +500 in budget\n");
+            res1 = res1 + 500; //оператор +
+            res1.Display();
+            Console.WriteLine("Prefix and Postfix\n");
+            res1 = res1++;
+            res1.Display();
+            res1 = ++res1;
+            res1.Display();
+
+            Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found: ");
+		    string search = Console.ReadLine(); //строка для поиска
+		    res1.found_name_surname(search);
 
             Console.WriteLine("\nEnd of program. Press any key to exit...");
             Console.ReadKey(); //ожидание нажатия любой клавиши для выхода.
