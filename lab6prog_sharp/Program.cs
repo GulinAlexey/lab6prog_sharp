@@ -3,14 +3,14 @@ using System;
 
 namespace lab6prog_sharp
 {
-    class Worker //работник заповедника
+    struct Worker //работник заповедника
     {
-        private int num_tr; //номер трудовой книжки
-        private string name_surname; //имя и фамилия
-        private string dolzh; //должность
-        private int hours; //кол-во рабочих часов
-        private int zarpl; //зарплата в месяц в рублях
-        private int progools; //кол-во прогулов (в днях)
+        public int num_tr; //номер трудовой книжки
+        public string name_surname; //имя и фамилия
+        public string dolzh; //должность
+        public int hours; //кол-во рабочих часов
+        public int zarpl; //зарплата в месяц в рублях
+        public int progools; //кол-во прогулов (в днях)
 
         //конструктор с параметрами
         public Worker(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
@@ -23,44 +23,7 @@ namespace lab6prog_sharp
             this.progools = progoo;
         }
 
-        //свойства полей
-        public int Num_tr
-        {
-            get { return num_tr; }
-            set { num_tr = value; }
-        }
-
-        public string Name_surname
-        {
-            get { return name_surname; }
-            set { name_surname = value; }
-        }
-
-        public string Dolzh
-        {
-            get { return dolzh; }
-            set { dolzh = value; }
-        }
-
-        public int Hours
-        {
-            get { return hours; }
-            set { hours = value; }
-        }
-
-        public int Zarpl
-        {
-            get { return zarpl; }
-            set { zarpl = value; }
-        }
-
-        public int Progools
-        {
-            get { return progools; }
-            set { progools = value; }
-        }
-
-
+        
         //инициализация
         public void Init(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
         {
@@ -72,63 +35,7 @@ namespace lab6prog_sharp
             this.progools = progoo;
         }
 
-        //Получение и установление соответствующих полей
-        public void set_num(int num)
-        {
-            this.num_tr = num;
-        }
-        public int get_num()
-        {
-            return num_tr;
-        }
-
-        public void set_h(int h)
-        {
-            this.hours = h;
-        }
-        public int get_h()
-        {
-            return hours;
-        }
-
-        public void set_z(int z)
-        {
-            this.zarpl = z;
-        }
-        public int get_z()
-        {
-            return zarpl;
-        }
-
-        public void set_prog(int prog)
-        {
-            this.progools = prog;
-        }
-        public int get_prog()
-        {
-            return progools;
-        }
-
-        public void set_name(string nam)
-        {
-            this.name_surname = nam;
-        }
-
-        public string get_name()
-        {
-            return name_surname;
-        }
-
-        public void set_dol(string dol)
-        {
-            this.dolzh = dol;
-        }
-
-        public string get_dol()
-        {
-            return dolzh;
-        }
-
+        
         public void Read() //ввод
 	    {
 		    Console.WriteLine("\nInput info about worker.\n");
@@ -184,13 +91,13 @@ namespace lab6prog_sharp
 	    }
     }
 
-    class Reserve //заповедник
+    struct Reserve //заповедник
     {
-        private string title;  //название заповедника
-	    private int budget;          //бюджет заповедника
-	    private int expens;          //расходы
-	    private int kolvow;         //кол-во работников в заповеднике
-	    private Worker[] workers = new Worker[100]; //работники заповедника
+        public string title;  //название заповедника
+        public int budget;          //бюджет заповедника
+        public int expens;          //расходы
+        public int kolvow;         //кол-во работников в заповеднике
+        public Worker[] workers; //работники заповедника
 
         //конструктор с параметрами
         public Reserve(string titl, int budg, int exp, int kolv, Worker[] works)
@@ -199,6 +106,8 @@ namespace lab6prog_sharp
             this.budget = budg;
             this.expens = exp;
             this.kolvow = kolv;
+            this.workers = new Worker[100];
+
             for (int i = 0; i < kolv; i++)
             {
                 this.workers[i] = works[i];
@@ -212,35 +121,11 @@ namespace lab6prog_sharp
             this.budget = budg;
             this.expens = exp;
             this.kolvow = kolv;
+            this.workers = new Worker[100];
             for (int i = 0; i < kolv; i++)
             {
                 this.workers[i] = works;
             }
-        }
-
-        //свойства полей
-        public string Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
-
-        public int Budget
-        {
-            get { return budget; }
-            set { budget = value; }
-        }
-
-        public int Expens
-        {
-            get { return expens; }
-            set { expens = value; }
-        }
-
-        public int Kolvow
-        {
-            get { return kolvow; }
-            set { kolvow = value; }
         }
 
         //инициализация
@@ -267,12 +152,12 @@ namespace lab6prog_sharp
 		    for(int i=0; i<n; i++)
 		    {
                 Console.WriteLine("\nWorker {0}\n", i + 1);
-                Console.WriteLine("Num of workbook: {0}\n", workers[i].Num_tr);
-                Console.WriteLine("Name and surname: {0}\n", workers[i].Name_surname);
-                Console.WriteLine("Dolzhnost: {0}\n", workers[i].Dolzh);
-                Console.WriteLine("Work hours: {0}\n", workers[i].Hours);
-                Console.WriteLine("Zarplata: {0}\n", workers[i].Zarpl);
-                Console.WriteLine("Progools: {0}\n", workers[i].Progools);
+                Console.WriteLine("Num of workbook: {0}\n", workers[i].num_tr);
+                Console.WriteLine("Name and surname: {0}\n", workers[i].name_surname);
+                Console.WriteLine("Dolzhnost: {0}\n", workers[i].dolzh);
+                Console.WriteLine("Work hours: {0}\n", workers[i].hours);
+                Console.WriteLine("Zarplata: {0}\n", workers[i].zarpl);
+                Console.WriteLine("Progools: {0}\n", workers[i].progools);
 		    }
 	    }
 
@@ -293,10 +178,6 @@ namespace lab6prog_sharp
 		
 	    }
 
-        public Worker get_worker(int i) //получить работника с выбранным номером
-        {
-            return workers[i];
-        }
 
         public void Add(Reserve r1, Reserve r2) //сложение
         {
@@ -317,7 +198,7 @@ namespace lab6prog_sharp
 		    int n = this.kolvow; //получить кол-во работников
 		    for(int i=0; i<n; i++)
 		    {
-		    	this.workers[i].set_z(workers[i].Zarpl+izm); //добавить изменение к текущему
+		    	this.workers[i].zarpl= workers[i].zarpl + izm; //добавить изменение к текущему
 		    }
 	    }
 
@@ -330,47 +211,6 @@ namespace lab6prog_sharp
 		    this.budget+=izm; //добавить изменение к текущему
 	    }
 
-        public void blag(out double blaga) //количество отчислений на благотворительность (через out)
-        {
-            blaga = budget * 0.1;
-        }
-
-        public void sohr(ref double sohr) //сохранённая (неиспользованная) часть бюждета (через ref)
-        {
-            sohr = budget - expens;
-        }
-
-        public static Reserve operator+(Reserve r1, int a) //увеличение бюджета через +
-        {
-            Reserve rsum;
-            rsum = r1;
-            rsum.Budget = r1.Budget + a;
-            return rsum;
-        }
-
-        public static Reserve operator++(Reserve r1) //увеличение расходов через ++
-        {
-            ++r1.Expens;
-            return r1;
-        }
-
-        public void found_name_surname(String names_surnames) //поиск по имени и фамилии (обработка строк)
-	    {
-		    int rez=0;
-		    for(int i=0; i<kolvow; i++)
-		    {
-                rez=String.Compare(names_surnames, workers[i].Name_surname);
-		    	if(rez==0) //сравнить строки на идентичность
-		    	{
-		    		Console.WriteLine("\nWorker found.\n");
-		    		break;
-		    	}
-		    }
-		    if(rez!=0)
-		    {
-                Console.WriteLine("\nWorker didn't found.\n");
-		    }
-	    }
     }
 
     class Program
@@ -389,27 +229,6 @@ namespace lab6prog_sharp
 		    res1.Display();
 		    res1.BudgChange();
 		    res1.Display();
-
-            double bla; //отчисления на благотворительность
-            res1.blag(out bla);
-            Console.WriteLine("Reserve's charity is {0}\n", bla);
-
-            double soh=0; //неиспользованная часть бюджета
-            res1.sohr(ref soh);
-            Console.WriteLine("Reserve's unused part of the budget is {0}\n", soh);
-
-            Console.WriteLine("Reserve after +500 in budget\n");
-            res1 = res1 + 500; //оператор +
-            res1.Display();
-            Console.WriteLine("Prefix and Postfix\n");
-            res1 = res1++;
-            res1.Display();
-            res1 = ++res1;
-            res1.Display();
-
-            Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found: ");
-		    string search = Console.ReadLine(); //строка для поиска
-		    res1.found_name_surname(search);
 
             Console.WriteLine("\nEnd of program. Press any key to exit...");
             Console.ReadKey(); //ожидание нажатия любой клавиши для выхода.
