@@ -424,9 +424,10 @@ namespace lab6prog_sharp
 		    res1.BudgChange();
 		    res1.Display();
 
-            int nal=0; //отчисления
-            res1.nal_otchisl(nal);
-            Console.WriteLine("Reserve's charity is {0}\n", nal);
+            int nal=0; //налоговые отчисления
+            nal=res1.nal_otchisl(nal);
+            Console.WriteLine("\nTax is {0}\n", Reserve.get_nalog());
+            Console.WriteLine("Reserve's tax deductions is {0}\n", nal);
 
             double soh=0; //неиспользованная часть бюджета
             res1.sohr(ref soh);
@@ -435,11 +436,12 @@ namespace lab6prog_sharp
             Reserve res2 = new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
             res2.Read();
             res2.Display();
+            //для лаб. 8
             Reserve.sravn_kolvow(res1, res2);
 		    Reserve.set_nalog(0.05);
             Console.WriteLine("\nNew tax is {0}\n", Reserve.get_nalog());
 
-            Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found: ");
+            Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found in reserve 1: ");
 		    string search = Console.ReadLine(); //строка для поиска
 		    res1.found_name_surname(search);
 
