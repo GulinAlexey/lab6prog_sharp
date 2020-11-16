@@ -432,14 +432,12 @@ namespace lab6prog_sharp
             res1.sohr(ref soh);
             Console.WriteLine("Reserve's unused part of the budget is {0}\n", soh);
 
-            Console.WriteLine("Reserve after +500 in budget\n");
-            res1 = res1 + 500; //оператор +
-            res1.Display();
-            Console.WriteLine("Prefix and Postfix\n");
-            res1 = res1++;
-            res1.Display();
-            res1 = ++res1;
-            res1.Display();
+            Reserve res2 = new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
+            res2.Read();
+            res2.Display();
+            Reserve.sravn_kolvow(res1, res2);
+		    Reserve.set_nalog(0.05);
+            Console.WriteLine("\nNew tax is {0}\n", Reserve.get_nalog());
 
             Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found: ");
 		    string search = Console.ReadLine(); //строка для поиска
