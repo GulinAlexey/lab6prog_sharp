@@ -191,6 +191,8 @@ namespace lab6prog_sharp
 	    private int expens;          //расходы
 	    private int kolvow;         //кол-во работников в заповеднике
 	    private Worker[] workers = new Worker[100]; //работники заповедника
+        const double NALOGG=0.13; //процент налоговых отчислений (изначально) (для лаб. 8)
+        private static double nalog = NALOGG; //налоговые отчисления (для лаб. 8)
 
         //конструктор с параметрами
         public Reserve(string titl, int budg, int exp, int kolv, Worker[] works)
@@ -298,6 +300,21 @@ namespace lab6prog_sharp
             return workers[i];
         }
 
+        static public double get_nalog() //получение значения процента налоговых отчислений (для лаб. 8)
+        {
+            return nalog;
+        }
+
+        static public void set_nalog(double nalogi) //установление значения процента налоговых отчислений (для лаб. 8)
+        {
+            nalog = nalogi;
+        }
+
+        public int get_kolvo() //получение значения кол-ва работников
+        {
+            return kolvow;
+        }
+
         public void Add(Reserve r1, Reserve r2) //сложение
         {
             Reserve rsum;
@@ -330,9 +347,10 @@ namespace lab6prog_sharp
 		    this.budget+=izm; //добавить изменение к текущему
 	    }
 
-        public void blag(out double blaga) //количество отчислений на благотворительность (через out)
+        public int nal_otchisl(int otchisl) //налоговые отчисления
         {
-            blaga = budget * 0.1;
+            otchisl = (int)(expens * nalog);
+            return otchisl;
         }
 
         public void sohr(ref double sohr) //сохранённая (неиспользованная) часть бюждета (через ref)
@@ -371,6 +389,22 @@ namespace lab6prog_sharp
                 Console.WriteLine("\nWorker didn't found.\n");
 		    }
 	    }
+
+        public static void sravn_kolvow(Reserve r1, Reserve r2) //сравнить два заповедника по кол-ву работников (статический метод) (для лаб. 8)
+	    {
+		    if(r1.get_kolvo()>r2.get_kolvo())
+		    {
+		    	Console.WriteLine("\nMore workers in first reserve.\n");
+		    }
+		    if (r1.get_kolvo()<r2.get_kolvo())
+		    {
+		    	Console.WriteLine("\nMore workers in second reserve.\n");
+		    }
+		    if (r1.get_kolvo()==r2.get_kolvo())
+		    {
+                Console.WriteLine("\nCounts of workers in reserves are equal.\n");
+		    }
+	    }
     }
 
     class Program
@@ -390,9 +424,9 @@ namespace lab6prog_sharp
 		    res1.BudgChange();
 		    res1.Display();
 
-            double bla; //отчисления на благотворительность
-            res1.blag(out bla);
-            Console.WriteLine("Reserve's charity is {0}\n", bla);
+            int nal=0; //отчисления
+            res1.nal_otchisl(nal);
+            Console.WriteLine("Reserve's charity is {0}\n", nal);
 
             double soh=0; //неиспользованная часть бюджета
             res1.sohr(ref soh);
