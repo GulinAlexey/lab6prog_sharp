@@ -203,7 +203,7 @@ namespace lab6prog_sharp
         const double NALOGG=0.13; //процент налоговых отчислений (изначально) (для лаб. 8)
         private static double nalog = NALOGG; //налоговые отчисления (для лаб. 8)
 
-        //конструктор с параметрами
+        //конструктор со всеми параметрами (для лаб. 9)
         public Reserve(string titl, int budg, int exp, int kolv, Worker[] works)
         {
             this.title = titl;
@@ -211,12 +211,10 @@ namespace lab6prog_sharp
             this.expens = exp;
             this.kolvow = kolv;
             for (int i = 0; i < kolv; i++)
-            {
                 this.workers[i] = works[i];
-            }
         }
 
-        //конструктор с параметрами (вторая перегрузка)
+        //конструктор со всеми параметрами (для лаб. 9) (вторая перегрузка)
         public Reserve(string titl, int budg, int exp, int kolv, Worker works)
         {
             this.title = titl;
@@ -224,11 +222,28 @@ namespace lab6prog_sharp
             this.expens = exp;
             this.kolvow = kolv;
             for (int i = 0; i < kolv; i++)
-            {
                 this.workers[i] = works;
-            }
         }
 
+        public Reserve() //конструктор без параметров (для лаб. 9)
+        {
+            title = "title";
+            budget = 0;
+            expens = 0;
+            kolvow = 0;
+        }
+
+        public Reserve(int kolv) //конструктор с одним параметром (для лаб. 9)
+        {
+            this.title = "Reserve";
+            this.budget = 1000000;
+            this.expens = 100000;
+            this.kolvow = kolv;
+            Worker w_konstr = new Worker("Ivan Ivanov");
+            for (int i = 0; i < kolv; i++)
+                this.workers[i] = w_konstr;
+        }
+	
         //свойства полей
         public string Title
         {
@@ -324,14 +339,14 @@ namespace lab6prog_sharp
             return kolvow;
         }
 
-        public void Add(Reserve r1, Reserve r2) //сложение
+        static public Reserve Add(Reserve r1, Reserve r2) //сложение
         {
             Reserve rsum;
             rsum = r1; //переписать первую структуру в суммарную структуру
             rsum.budget += r2.budget; //прибавить к имеющимся числовым переменным суммарной структуры значения из второй структуры
             rsum.expens += r2.expens;
             rsum.kolvow += r2.kolvow;
-            this.Init(rsum.title, rsum.budget, rsum.expens, rsum.kolvow, rsum.workers); //вернуть итоговый объект как результат
+            return rsum; //вернуть итоговый объект как результат
         }
 
         public void ZarplChange() //изменение зарплаты всех (прикладное)
