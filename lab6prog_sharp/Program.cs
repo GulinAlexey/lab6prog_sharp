@@ -435,28 +435,35 @@ namespace lab6prog_sharp
     {
         static void Main(string[] args) //основная программа (главная)
         {
-            const int LEN = 100;
             Console.WriteLine("Start program for working with workers and reserves.\n");
-            Worker[] w0 = new Worker[LEN]; //начальные данные работника для инициализации заповедника
-            for (int i = 0; i < LEN; i++)
-                w0[i] = new Worker(12345, "No Name", "No Prof", 0, 0, 0);
-            Reserve res1= new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
-		    res1.Read();
-		    res1.Display();
-		    res1.ZarplChange();
-		    res1.Display();
-		    res1.BudgChange();
-		    res1.Display();
+            
+            Worker wrk11 = new Worker();
+		    Worker wrk12 = new Worker("Vlad Vladov");
+		    Worker wrk13 = new Worker(22222, "Oleg Olegov", "Gribnik", 150, 8000, 3);
+		    Console.WriteLine("\nWorker: constructor without value.\n");
+		    wrk11.Display();
+		    Console.WriteLine("\nWorker: constructor with one value.\n");
+		    wrk12.Display();
+		    Console.WriteLine("\nWorker: constructor with all value.\n");
+		    wrk13.Display();
 
-            int nal=0; //налоговые отчисления
-            nal=res1.nal_otchisl(nal);
-            Console.WriteLine("\nTax is {0}\n", Reserve.get_nalog());
-            Console.WriteLine("Reserve's tax deductions is {0}\n", nal);
+		    Reserve res11 = new Reserve();
+		    Reserve res12 = new Reserve(2);
+		    Reserve res13 = new Reserve("White Sand", 2000000, 400000, 0, wrk11);
+		    Console.WriteLine("\nReserve: constructor without value.\n");
+		    res11.Display();
+		    Console.WriteLine("\nReserve: constructor with one value.\n");
+		    res12.Display();
+            Console.WriteLine("\nReserve: constructor with all value.\n");
+		    res13.Display();
+		
+		    Worker[] wrk2= new Worker[2];
+		    for(int i=0; i<2; i++)
+		    {
+			    wrk2[i]= new Worker("Ivan Ivanov"); //инициализация небольшого массива конструктором с одним параметром
+		    }
 
-            double soh=0; //неиспользованная часть бюджета
-            res1.sohr(ref soh);
-            Console.WriteLine("Reserve's unused part of the budget is {0}\n", soh);
-
+            /*
             Reserve res2 = new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
             res2.Read();
             res2.Display();
@@ -468,6 +475,7 @@ namespace lab6prog_sharp
             Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found in reserve 1: ");
 		    string search = Console.ReadLine(); //строка для поиска
 		    res1.found_name_surname(search);
+             */
 
             Console.WriteLine("\nEnd of program. Press any key to exit...");
             Console.ReadKey(); //ожидание нажатия любой клавиши для выхода.
