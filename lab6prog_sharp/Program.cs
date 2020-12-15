@@ -1,8 +1,22 @@
-﻿//Гулин А. Н., ПИ-92. Лаб. 9 Конструкторы
+﻿//Гулин А. Н., ПИ-92. Лаб. 10 Исключения
 using System;
 
 namespace lab6prog_sharp
 {
+    //для создания пользовательской обработки исключений (для лаб. 10)
+    class WorkerException : Exception //Используется наследование
+    {
+        private int errorCode;
+        public WorkerException(string error_message, int error_code)
+            : base(error_message) //вызов конструктора базового класса
+        {
+            errorCode = error_code;
+        }
+
+        public int ErrorCode { get { return errorCode; } }
+    }
+
+
     class Worker //работник заповедника
     {
         private int num_tr; //номер трудовой книжки
@@ -15,6 +29,12 @@ namespace lab6prog_sharp
         //конструктор со всеми параметрами (для лаб. 9)
         public Worker(int num_trud, string name_sur, string dolzhno, int hourss, int zarplat, int progoo)
         {
+            if (num_trud < 0 || hourss < 0 || zarplat < 0 || progoo < 0) //(для лаб. 10)
+            {
+                throw new WorkerException("Negative value", 33);
+            }
+
+
             this.num_tr = num_trud;
             this.name_surname = name_sur;
             this.dolzh = dolzhno;
@@ -141,18 +161,56 @@ namespace lab6prog_sharp
         public void Read() //ввод
 	    {
 		    Console.WriteLine("\nInput info about worker.\n");
-		    Console.WriteLine("Input num of workbook: ");
-		    num_tr=Int32.Parse(Console.ReadLine());
-		    Console.WriteLine("Input name and surname: ");
-		    name_surname=Console.ReadLine();
+            try //(для лаб. 10)
+            {
+                Console.WriteLine("Input num of workbook: ");
+                num_tr = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("This is not a number.\nPress any key.");
+                Console.ReadKey();
+                return;
+            }
+           
+            Console.WriteLine("Input name and surname: ");
+            name_surname = Console.ReadLine();
 		    Console.WriteLine("Input dolzhnost: ");
 		    dolzh=Console.ReadLine();
-		    Console.WriteLine("Input work hours: ");
-		    hours=Int32.Parse(Console.ReadLine());
-		    Console.WriteLine("Input zarplata: ");
-		    zarpl=Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Input progools: ");
-		    progools=Int32.Parse(Console.ReadLine());
+
+            try //(для лаб. 10)
+            {
+                Console.WriteLine("Input work hours: ");
+                hours = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("This is not a number.\nPress any key.");
+                Console.ReadKey();
+                return;
+            }
+            try //(для лаб. 10)
+            {
+                Console.WriteLine("Input zarplata: ");
+                zarpl = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("This is not a number.\nPress any key.");
+                Console.ReadKey();
+                return;
+            }
+            try //(для лаб. 10)
+            {
+                Console.WriteLine("Input progools: ");
+                progools = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("This is not a number.\nPress any key.");
+                Console.ReadKey();
+                return;
+            }
 	    }
 
         public void Display() //вывод
@@ -437,6 +495,21 @@ namespace lab6prog_sharp
         {
             Console.WriteLine("Start program for working with workers and reserves.\n");
             
+            //(для лаб. 10)
+            try
+            {
+                Worker wrk88 = new Worker(22222, "Oleg Olegov", "Gribnik", -5, 8000, 3);
+            }
+            catch (WorkerException ex)
+            {
+                //пользовательский
+                Console.WriteLine("\nError: " + ex.Message + "; error's code: " + ex.ErrorCode);
+            }
+
+            Worker wrk99 = new Worker(); //(для лаб. 10)
+            wrk99.Read();
+            wrk99.Display();
+
             Worker wrk11 = new Worker();
 		    Worker wrk12 = new Worker("Vlad Vladov");
 		    Worker wrk13 = new Worker(22222, "Oleg Olegov", "Gribnik", 150, 8000, 3);
