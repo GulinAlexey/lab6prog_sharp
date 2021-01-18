@@ -559,6 +559,7 @@ namespace lab6prog_sharp
         {
             Console.WriteLine("Start program for working with workers and reserves.\n");
             
+            /*
             //(для лаб. 10)
             try
             {
@@ -569,10 +570,13 @@ namespace lab6prog_sharp
                 //пользовательский
                 Console.WriteLine("\nError: " + ex.Message + "; error's code: " + ex.ErrorCode);
             }
+            */
 
+            /*
             Worker wrk99 = new Worker(); //(для лаб. 10)
             wrk99.Read();
             wrk99.Display();
+            */
 
             Worker wrk11 = new Worker();
 		    Worker wrk12 = new Worker("Vlad Vladov");
@@ -600,19 +604,55 @@ namespace lab6prog_sharp
 			    wrk2[i]= new Worker("Ivan Ivanov"); //инициализация небольшого массива конструктором с одним параметром
 		    }
 
+            //для лаб 11
+            Console.WriteLine("Input count of workers: ");
+
+            int kolvv = Int32.Parse(Console.ReadLine());
+            Worker[] wrkk = new Worker[kolvv];
+            for (int i = 0; i < kolvv; i++)
+            {
+                wrkk[i] = new Worker();
+                wrkk[i].Read();
+            }
+            for (int h = 0; h < kolvv; h++)
+            {
+                wrkk[h].Display();
+            }
+
+            Reserve res123 = new Reserve("Svetilo", 1000000, 500000, kolvv, wrkk); //для лаб 11
+
+            //для лаб 11
+            Console.WriteLine("Input count of areas in reserve: ");
+            int ar = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Input count of workers on area: ");
+            kolvv = Int32.Parse(Console.ReadLine());
+            Worker[,] wrk55 = new Worker[ar, kolvv];
+            for (int i = 0; i < ar; i++)
+            {
+                for (int j = 0; j < kolvv; j++)
+                {
+                    wrk55[i, j] = new Worker();
+                    wrk55[i, j].Read();
+                }
+            }
+            Reserve rees = new Reserve("Opyata", 2000000, 1500000, kolvv, ar, wrk55);
+            rees.Display();
+            rees.ZarplChange();
+            rees.Display();
+
             /*
             Reserve res2 = new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
             res2.Read();
             res2.Display();
             //для лаб. 8
             Reserve.sravn_kolvow(res1, res2);
-		    Reserve.set_nalog(0.05);
+            Reserve.set_nalog(0.05);
             Console.WriteLine("\nNew tax is {0}\n", Reserve.get_nalog());
 
             Console.WriteLine("\nInput name, surname of worker\nwhat would you like to found in reserve 1: ");
-		    string search = Console.ReadLine(); //строка для поиска
-		    res1.found_name_surname(search);
-             */
+            string search = Console.ReadLine(); //строка для поиска
+            res1.found_name_surname(search);
+            */
 
             Console.WriteLine("\nEnd of program. Press any key to exit...");
             Console.ReadKey(); //ожидание нажатия любой клавиши для выхода.
