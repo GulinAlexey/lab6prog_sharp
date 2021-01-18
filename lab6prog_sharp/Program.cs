@@ -636,9 +636,9 @@ namespace lab6prog_sharp
                 }
             }
             Reserve rees = new Reserve("Opyata", 2000000, 1500000, kolvv, ar, wrk55);
-            rees.Display();
+            rees.Display_areas();
             rees.ZarplChange();
-            rees.Display();
+            rees.Display_areas();
 
             /*
             Reserve res2 = new Reserve("No Name", 0, 0, 100, w0); //объект заповедника с массивом объектов работников
