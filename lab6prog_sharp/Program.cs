@@ -256,8 +256,10 @@ namespace lab6prog_sharp
         private string title;  //название заповедника
 	    private int budget;          //бюджет заповедника
 	    private int expens;          //расходы
-	    private int kolvow;         //кол-во работников в заповеднике
-	    private Worker[] workers = new Worker[100]; //работники заповедника
+	    private int kolvow;         //кол-во работников в заповеднике на одном участке
+        private int area; //кол-во участков в заповеднике (на каждом свои работники) //лаб 11
+	    private Worker[] workers = new Worker[50]; //работники заповедника
+        private Worker[,] workersa = new Worker[50, 50]; //работники заповедника, если несколько участков //лаб 11
         const double NALOGG=0.13; //процент налоговых отчислений (изначально) (для лаб. 8)
         private static double nalog = NALOGG; //налоговые отчисления (для лаб. 8)
 
@@ -270,6 +272,23 @@ namespace lab6prog_sharp
             this.kolvow = kolv;
             for (int i = 0; i < kolv; i++)
                 this.workers[i] = works[i];
+        }
+
+        //конструктор для лаб 11 (когда есть деление на участки)
+        public Reserve(string titl, int budg, int exp, int kolv, int areas, Worker[,] works)
+        {
+            this.title = titl;
+            this.budget = budg;
+            this.expens = exp;
+            this.kolvow = kolv;
+            this.area = areas;
+            for (int i = 0; i < areas; i++)
+            {
+                for (int j = 0; j < kolv; j++)
+                {
+                    this.workersa[i, j] = works[i, j];
+                }
+            }
         }
 
         //конструктор со всеми параметрами (для лаб. 9) (вторая перегрузка)
@@ -289,6 +308,7 @@ namespace lab6prog_sharp
             budget = 0;
             expens = 0;
             kolvow = 0;
+            area = 0;
         }
 
         public Reserve(int kolv) //конструктор с одним параметром (для лаб. 9)
@@ -359,6 +379,31 @@ namespace lab6prog_sharp
                 Console.WriteLine("Progools: {0}\n", workers[i].Progools);
 		    }
 	    }
+
+        public void Display_areas() //вывод по участкам //лаб 11
+        {
+            Console.WriteLine("\nOutput info about reserve.\n");
+            Console.WriteLine("Title: {0}\n", title);
+            Console.WriteLine("Budget: {0}\n", budget);
+            Console.WriteLine("Expenses: {0}\n", expens);
+            Console.WriteLine("Count of workers on area: {0}\n", kolvow);
+            Console.WriteLine("Count of areas: {0}\n", area);
+            int n = this.kolvow; //получить кол-во работников
+            int na = this.area; //получить кол-во участков
+            for (int i = 0; i < na; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.WriteLine("\nWorker {0} on area {1}\n", j+1, i+1);
+                    Console.WriteLine("Num of workbook: {0}\n", workersa[i, j].Num_tr);
+                    Console.WriteLine("Name and surname: {0}\n", workersa[i, j].Name_surname);
+                    Console.WriteLine("Dolzhnost: {0}\n", workersa[i, j].Dolzh);
+                    Console.WriteLine("Work hours: {0}\n", workersa[i, j].Hours);
+                    Console.WriteLine("Zarplata: {0}\n", workersa[i, j].Zarpl);
+                    Console.WriteLine("Progools: {0}\n", workersa[i, j].Progools);
+                }
+            }
+        }
 
         public void Read() //ввод
 	    {
