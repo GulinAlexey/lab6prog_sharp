@@ -347,6 +347,12 @@ namespace lab6prog_sharp
             set { kolvow = value; }
         }
 
+        public int Area
+        {
+            get { return area; }
+            set { area = value; }
+        }
+
         //инициализация
         public void Init(string titl, int budg, int exp, int kolv, Worker[] works)
         {
