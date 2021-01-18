@@ -452,17 +452,30 @@ namespace lab6prog_sharp
             return rsum; //вернуть итоговый объект как результат
         }
 
-        public void ZarplChange() //изменение зарплаты всех (прикладное)
+        public void ZarplChange() //изменение зарплаты всех работников (прикладное) //лаб 11
 	    {
 		    Console.WriteLine("\nChanging zarplata of all workers\n");
 		    Console.WriteLine("Input changes of zarplata: ");
 		    int izm; //переменная с прибавкой или убавкой
             izm = Int32.Parse(Console.ReadLine());
-		    int n = this.kolvow; //получить кол-во работников
-		    for(int i=0; i<n; i++)
-		    {
-		    	this.workers[i].set_z(workers[i].Zarpl+izm); //добавить изменение к текущему
-		    }
+
+            if (area == 0) //если заповедник без разделения на участки
+            {
+                for (int i = 0; i < this.kolvow; i++)
+                {
+                    this.workers[i].set_z(workers[i].Zarpl + izm); //добавить изменение к текущему
+                }
+            }
+            else
+            {
+                for (int i = 0; i < this.area; i++)
+                {
+                    for (int j = 0; j < this.kolvow; j++)
+                    {
+                        this.workersa[i, j].set_z(workersa[i, j].Zarpl + izm); //добавить изменение к текущему
+                    }
+                }
+            }
 	    }
 
         public void BudgChange() //изменение бюджета (прикладное)
